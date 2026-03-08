@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nesara Suresh — Biomedical Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --ink: #1a1a14;
+      --sage: #7a9e7e;
+      --blush: #c9a98a;
+      --rust: #b5603a;
+      --mist: #d4ddd5;
+      --light: #ede8df;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(26,26,20,0.1);
+    }
+    nav .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 300;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+    }
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav ul a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none; opacity: 0.6; transition: opacity 0.2s;
+    }
+    nav ul a:hover { opacity: 1; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 5rem; overflow: hidden;
+    }
+    .hero-left {
+      padding: 6rem 3rem 4rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+      animation: fadeUp 0.9s ease both;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 1.5rem;
+    }
+    .hero-name {
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -0.02em; margin-bottom: 2rem;
+    }
+    .hero-name em { font-style: italic; color: var(--rust); }
+    .hero-bio {
+      font-size: 1.15rem; font-weight: 300;
+      color: rgba(26,26,20,0.7); max-width: 460px;
+      margin-bottom: 2.5rem; line-height: 1.8;
+    }
+    .hero-cta { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.85rem 2rem; text-decoration: none;
+      transition: all 0.25s; display: inline-block;
+    }
+    .btn-primary { background: var(--ink); color: var(--cream); border: 1.5px solid var(--ink); }
+    .btn-primary:hover { background: var(--rust); border-color: var(--rust); }
+    .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid rgba(26,26,20,0.4); }
+    .btn-outline:hover { border-color: var(--ink); background: var(--light); }
+
+    .hero-stats {
+      display: flex; gap: 0; align-items: flex-start;
+      margin-top: 2.5rem; padding-top: 2rem;
+      border-top: 1px solid rgba(26,26,20,0.12);
+    }
+    .stat { display: flex; flex-direction: column; padding: 0 2rem 0 0; }
+    .stat:first-child { padding-left: 0; }
+    .stat-divider { width: 1px; background: rgba(26,26,20,0.12); margin: 0 2rem 0 0; align-self: stretch; }
+    .stat-number { font-size: 2.6rem; font-weight: 300; line-height: 1; color: var(--ink); display: block; }
+    .stat-label {
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.15em; text-transform: uppercase; color: rgba(26,26,20,0.5);
+      margin-top: 0.3rem; display: block;
+    }
+    .hero-right {
+      display: flex; align-items: center; justify-content: center;
+      animation: fadeIn 1.3s ease both;
+    }
+    .hero-orb {
+      width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 40%, var(--mist), var(--sage) 45%, var(--blush) 70%, var(--cream));
+      animation: float 8s ease-in-out infinite; position: relative;
+    }
+    .hero-orb::after {
+      content: ''; position: absolute; inset: 20px;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    /* SECTIONS */
+    section { padding: 7rem 4rem; }
+    .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 4rem; }
+    .section-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--sage); letter-spacing: 0.1em; }
+    .section-title { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; letter-spacing: -0.02em; }
+    .section-title em { font-style: italic; color: var(--rust); }
+    .section-line { flex: 1; height: 1px; background: rgba(26,26,20,0.15); }
+
+    /* ABOUT */
+    #about { background: var(--ink); color: var(--cream); }
+    #about .section-title { color: var(--cream); }
+    #about .section-title em { color: var(--blush); }
+    #about .section-num { color: var(--sage); }
+    #about .section-line { background: rgba(245,240,232,0.15); }
+    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; align-items: start; }
+    .about-text p { font-size: 1.2rem; font-weight: 300; color: rgba(245,240,232,0.82); line-height: 1.9; margin-bottom: 1.5rem; }
+    .about-details { display: flex; flex-direction: column; gap: 1.8rem; }
+    .detail-item { border-top: 1px solid rgba(245,240,232,0.15); padding-top: 1.2rem; }
+    .detail-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.4rem; }
+    .detail-value { font-size: 1rem; color: rgba(245,240,232,0.85); }
+
+    /* PROJECTS */
+    #projects { background: var(--cream); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .project-card {
+      background: var(--light); padding: 2.5rem 2rem;
+      position: relative; overflow: hidden; transition: all 0.35s ease;
+    }
+    .project-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      height: 3px; width: 0; background: var(--rust); transition: width 0.4s ease;
+    }
+    .project-card:hover::before { width: 100%; }
+    .project-card:hover { background: var(--mist); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26,26,20,0.08); }
+    .project-year { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; color: var(--sage); margin-bottom: 1rem; }
+    .project-title { font-size: 1.15rem; font-weight: 600; line-height: 1.3; margin-bottom: 1rem; }
+    .project-desc { font-size: 0.95rem; color: rgba(26,26,20,0.65); line-height: 1.7; font-weight: 300; }
+    .project-tag { display: inline-block; margin-top: 1.2rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.8rem; border: 1px solid rgba(26,26,20,0.2); color: rgba(26,26,20,0.5); border-radius: 20px; }
+
+    /* SKILLS */
+    #skills { background: var(--light); }
+    .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+    .skills-col-title { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 2rem; }
+    .skill-item { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid rgba(26,26,20,0.1); }
+    .skill-name { font-size: 1rem; color: var(--ink); font-weight: 300; }
+    .skill-bar { width: 100px; height: 2px; background: rgba(26,26,20,0.1); }
+    .skill-fill { height: 100%; background: var(--sage); }
+    .cert-item { padding: 1.2rem 0; border-bottom: 1px solid rgba(26,26,20,0.1); }
+    .cert-title { font-size: 1rem; font-weight: 400; margin-bottom: 0.3rem; }
+    .cert-by { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--sage); letter-spacing: 0.1em; }
+
+    /* EDUCATION */
+    #education { background: var(--cream); }
+    .edu-timeline { position: relative; max-width: 800px; }
+    .edu-timeline::before { content: ''; position: absolute; left: 12px; top: 8px; bottom: 8px; width: 1px; background: rgba(26,26,20,0.15); }
+    .edu-item { display: grid; grid-template-columns: 40px 1fr; gap: 2rem; margin-bottom: 3rem; }
+    .edu-dot { width: 25px; height: 25px; border-radius: 50%; background: var(--cream); border: 2px solid var(--sage); margin-top: 4px; }
+    .edu-degree { font-size: 1.25rem; font-weight: 400; margin-bottom: 0.3rem; }
+    .edu-school { font-size: 0.95rem; font-weight: 300; color: rgba(26,26,20,0.65); margin-bottom: 0.3rem; }
+    .edu-year { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; color: var(--rust); }
+
+    /* CONTACT */
+    #contact { background: var(--ink); color: var(--cream); text-align: center; padding: 8rem 4rem; }
+    #contact .section-title { color: var(--cream); font-size: clamp(2.5rem, 5vw, 4.5rem); }
+    #contact .section-title em { color: var(--blush); }
+    .contact-sub { font-size: 1.15rem; font-weight: 300; color: rgba(245,240,232,0.6); margin: 1.5rem auto 3.5rem; max-width: 500px; }
+    .contact-links { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+    .contact-link { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; display: flex; align-items: center; gap: 0.7rem; }
+    .contact-link:hover { opacity: 1; }
+    .dash { display: inline-block; width: 20px; height: 1px; background: var(--sage); }
+
+    /* FOOTER */
+    footer { background: var(--ink); border-top: 1px solid rgba(245,240,232,0.08); padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; color: rgba(245,240,232,0.3); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      nav { padding: 1.2rem 2rem; }
+      nav ul { gap: 1.2rem; }
+      section { padding: 5rem 2rem; }
+      #hero { grid-template-columns: 1fr; min-height: auto; padding: 7rem 2rem 3rem; }
+      .hero-right { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .skills-layout { grid-template-columns: 1fr; gap: 3rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem 2rem; }
+    }
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .contact-links { flex-direction: column; align-items: center; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="logo">Nesara Suresh</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Biomedical Engineer · Sydney, NSW</p>
+    <h1 class="hero-name">Designing tech<br>for <em>human health</em></h1>
+    <p class="hero-bio">I bridge medicine and engineering — building intelligent, compassionate systems that extend care, restore independence, and improve lives.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-number">6+</span><span class="stat-label">Projects</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-number">8.86</span><span class="stat-label">CGPA</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-number">3</span><span class="stat-label">Certifications</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-orb"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About <em>me</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a Biomedical Engineering graduate student at the University of Technology Sydney, passionate about creating technology that makes healthcare accessible, equitable, and human-centred.</p>
+      <p>My work spans IoT health monitoring, machine learning diagnostics, and assistive devices — always grounded in empathy for the people who will use them. I believe the best engineering is invisible: it just quietly makes life better.</p>
+      <p>I'm passionate about the intersection of healthcare and design. Currently pursuing the Google UX Design Certificate, I'm drawn to crafting intuitive, accessible product experiences — and actively seeking opportunities to grow as a Product Designer within the medical and tech space.</p>
+      <p>Away from coursework, you'll find me sketching, tending to my garden, cooking, or singing — activities that, much like engineering, require creativity, patience, and attention to detail. Since moving to Australia, I've also become a fan of coastal walks, finding inspiration in the outdoors.</p>
+    </div>
+    <div class="about-details reveal">
+      <div class="detail-item">
+        <div class="detail-label">Location</div>
+        <div class="detail-value">Sydney, NSW, Australia</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Currently</div>
+        <div class="detail-value">Master of Biomedical Engineering, UTS (2025–2027)</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Languages</div>
+        <div class="detail-value">English · Kannada · Hindi</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Interests</div>
+        <div class="detail-value">Sketching · Painting · Singing · Gardening · Cooking · Coastal Walks</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Email</div>
+        <div class="detail-value">
+          <a href="mailto:nesarasureshaus@gmail.com" style="color:var(--blush);text-decoration:none;">nesarasureshaus@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Selected <em>projects</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-year">Apr 2024</div>
+      <div class="project-title">VirtuMedic: ML-Powered Virtual Telemedicine</div>
+      <div class="project-desc">Real-time IoT health monitoring with machine learning predictions and an intelligent ChatBot for remote patient engagement — replacing expensive facilities with accessible, instant care.</div>
+      <span class="project-tag">IoT · Machine Learning · Healthcare</span>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-year">Feb 2024</div>
+      <div class="project-title">Leukemia Detection via Image Processing</div>
+      <div class="project-desc">MATLAB-based image segmentation system enabling early, rapid detection of Leukemia blood cancer — dramatically shortening time-to-diagnosis for timely treatment.</div>
+      <span class="project-tag">MATLAB · Image Processing · Oncology</span>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-year">Jul 2023</div>
+      <div class="project-title">Smart Stick for Visually Challenged</div>
+      <div class="project-desc">An assistive device empowering visually impaired individuals with obstacle detection and guidance, fostering independence in daily navigation.</div>
+      <span class="project-tag">Assistive Tech · Embedded Systems</span>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-year">Feb 2023</div>
+      <div class="project-title">Head Movement HCI for Paralysed Patients</div>
+      <div class="project-desc">An infrared-powered human-computer interface for cervical cord injury patients, translating neck movements into digital commands — restoring agency to those with paralysis.</div>
+      <span class="project-tag">HCI · Infrared · Accessibility</span>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-year">Jul 2022</div>
+      <div class="project-title">Comatose Patient Monitoring System</div>
+      <div class="project-desc">Continuous monitoring solution tracking vital signs and micro-movements in comatose patients, with real-time caregiver alerts to ensure prompt, informed response.</div>
+      <span class="project-tag">Patient Monitoring · IoT · Alerts</span>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-year">Feb 2022</div>
+      <div class="project-title">Human Posture Monitoring System</div>
+      <div class="project-desc">A wearable device that detects poor posture in real time and alerts users — promoting ergonomic habits and preventing long-term musculoskeletal damage.</div>
+      <span class="project-tag">Wearable · Ergonomics · Prevention</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Skills &amp; <em>expertise</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-layout">
+    <div class="reveal">
+      <div class="skills-col-title">Technical Stack</div>
+      <div class="skill-item"><span class="skill-name">MATLAB / Simulink</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">C Programming</span><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Biomedical Visualisation</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">AutoCAD</span><div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Microsoft Office</span><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+
+      <div class="skills-col-title" style="margin-top:3rem">Certifications</div>
+      <div class="cert-item">
+        <div class="cert-title">Google UX Design Certificate <span style="font-size:0.8rem;color:var(--rust);font-weight:300;font-style:italic;">(In Progress)</span></div>
+        <div class="cert-by">Google · 2025–Present</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-title">Introductory to Neuroscience &amp; Neuro-Instrumentation</div>
+        <div class="cert-by">IISc, Bengaluru, India · 2023</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-title">Biomedical Visualisation</div>
+        <div class="cert-by">University of Glasgow, UK · 2024</div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="skills-col-title">Strengths</div>
+      <div class="skill-item"><span class="skill-name">Critical &amp; Creative Thinking</span><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Verbal &amp; Written Communication</span><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Detail Oriented</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Fast Learner</span><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Deadline Management</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+
+      <div class="skills-col-title" style="margin-top:3rem">Experience</div>
+      <div class="cert-item">
+        <div class="cert-title">Intern — Fanem Medical Devices Pvt. Ltd.</div>
+        <div class="cert-by">Bengaluru, India · Jul – Aug 2023</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-title">Art Tutor — Art on Canvas for Kids</div>
+        <div class="cert-by">Sydney, Australia · Nov – Dec 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Education <em>journey</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-timeline">
+    <div class="edu-item reveal">
+      <div class="edu-dot"></div>
+      <div class="edu-content">
+        <div class="edu-degree">Master of Biomedical Engineering</div>
+        <div class="edu-school">University of Technology Sydney, Ultimo, NSW</div>
+        <div class="edu-year">2025 – 2027</div>
+      </div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-dot"></div>
+      <div class="edu-content">
+        <div class="edu-degree">Bachelor of Engineering in Medical Electronics</div>
+        <div class="edu-school">Dayananda Sagar College of Engineering, Bengaluru, India</div>
+        <div class="edu-year">2024 · CGPA 8.86 / 10</div>
+      </div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-dot"></div>
+      <div class="edu-content">
+        <div class="edu-degree">Senior Secondary</div>
+        <div class="edu-school">Seshadripuram Composite Pre-University College, Bengaluru</div>
+        <div class="edu-year">2020</div>
+      </div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-dot"></div>
+      <div class="edu-content">
+        <div class="edu-degree">Higher Secondary</div>
+        <div class="edu-school">Sri Vidya Mandir Education Society, Bengaluru</div>
+        <div class="edu-year">2018</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title reveal">Let's <em>connect</em></h2>
+  <p class="contact-sub reveal">Open to research collaborations, internships, and conversations about biomedical innovation and product design.</p>
+  <div class="contact-links reveal">
+    <a href="mailto:nesarasureshaus@gmail.com" class="contact-link"><span class="dash"></span> nesarasureshaus@gmail.com</a>
+    <a href="tel:+610481877118" class="contact-link"><span class="dash"></span> +61 0481 877 118</a>
+    <a href="http://www.linkedin.com/in/nesara-suresh" target="_blank" rel="noopener" class="contact-link"><span class="dash"></span> LinkedIn Profile</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Nesara Suresh · Sydney, NSW</p>
+  <p>Biomedical Engineer · Master's Student at UTS</p>
+</footer>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var reveals = document.querySelectorAll('.reveal');
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+      reveals.forEach(function (el) { observer.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    // Hard fallback: ensure nothing stays hidden after 1.5s
+    setTimeout(function () {
+      reveals.forEach(function (el) { el.classList.add('visible'); });
+    }, 1500);
+  });
+</script>
+</body>
+</html>
